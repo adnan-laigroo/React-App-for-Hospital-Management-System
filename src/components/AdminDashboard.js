@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle, faCross, faDumpster, faDeleteLeft, faStop } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle, faCross, faDumpster, faDeleteLeft, faStop, faDumpsterFire, faHammer, faWrench } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
 import ViewPatientList from './ViewPatientList';
 import UpdatePassword from './UpdatePassword';
@@ -89,11 +89,15 @@ const AdminDashboard = ({ handleLogout }) => {
               <span className="option-label">Add User</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('editUser')}>
-              <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+              <FontAwesomeIcon icon={faWrench} size="2x" />
               <span className="option-label">Edit User</span>
             </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('userList')}>
+              <FontAwesomeIcon icon={faList} size="2x" />
+              <span className="option-label">User List</span>
+            </button>
             <button className="option-button admin" onClick={() => handleOptionClick('deleteUser')}>
-              <FontAwesomeIcon icon={faStop} size="2x" />
+              <FontAwesomeIcon icon={faDumpster} size="2x" />
               <span className="option-label">Delete User</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('addPatient')}>
@@ -102,11 +106,15 @@ const AdminDashboard = ({ handleLogout }) => {
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('updatePatient')}>
               <FontAwesomeIcon icon={faEdit} size="2x" />
-              <span className="option-label">Update Patient</span>
+              <span className="option-label">Edit Patient</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('patientList')}>
               <FontAwesomeIcon icon={faList} size="2x" />
               <span className="option-label">Patient List</span>
+            </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('deletePatient')}>
+              <FontAwesomeIcon icon={faDumpster} size="2x" />
+              <span className="option-label">Delete Patient</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('addAppointment')}>
               <FontAwesomeIcon icon={faCalendarPlus} size="2x" />
@@ -114,11 +122,15 @@ const AdminDashboard = ({ handleLogout }) => {
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('updateAppointment')}>
               <FontAwesomeIcon icon={faEdit} size="2x" />
-              <span className="option-label">Update Appointment</span>
+              <span className="option-label">Edit Appointment</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('viewAppointments')}>
               <FontAwesomeIcon icon={faEye} size="2x" />
               <span className="option-label">View Appointments</span>
+            </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('deleteAppointment')}>
+              <FontAwesomeIcon icon={faDumpster} size="2x" />
+              <span className="option-label">Delete Appointment</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('updatePassword')}>
               <FontAwesomeIcon icon={faKey} size="2x" />

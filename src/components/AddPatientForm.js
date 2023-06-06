@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './UpdatePasswordForm.css';
+import './AddForm.css';
 
 const AddPatientForm = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
@@ -11,6 +11,7 @@ const AddPatientForm = ({ handleBack }) => {
     pincode: ''
   });
   const [symptom, setSymptom] = useState('');
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
   const handleFormSubmit = (e) => {
@@ -40,6 +41,7 @@ const AddPatientForm = ({ handleBack }) => {
       })
       .then((data) => {
         console.log('Patient Added:', data);
+        setSuccess(true);
         setError('');
         // Perform any additional actions after successfully adding the patient
       })
@@ -63,13 +65,19 @@ const AddPatientForm = ({ handleBack }) => {
 
   return (
     <div className="add-patient-form-container">
-        <button type="button" className="back-button" onClick={handleBack}>
-            Back
-          </button>
+      <button type="button" className="back-button" onClick={handleBack}>
+        Back
+      </button>
       <h3>Add Patient</h3>
       {error && <p className="error-message">{error}</p>}
-      
+      {success && (
+        <div className="success-animation">
+          <span className="success-icon">&#10003;</span>
+          <p className="success-message">Patient added successfully!</p>
+        </div>
+      )}
       <form className="add-patient-form" onSubmit={handleFormSubmit}>
+        {/* Form fields */}
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input
@@ -147,6 +155,7 @@ const AddPatientForm = ({ handleBack }) => {
             className="input-field"
           />
         </div>
+        {/* Form submission buttons */}
         <div className="form-buttons">
           <button type="reset" className="reset-button" onClick={handleReset}>
             Reset
