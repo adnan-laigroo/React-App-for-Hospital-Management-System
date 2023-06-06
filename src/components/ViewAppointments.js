@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FaCheck, FaClock } from 'react-icons/fa';
+import './tableStyle.css'; // Import the CSS file
 
 const ViewAppointments = ({ handleBack }) => {
   const [appointments, setAppointments] = useState([]);
@@ -20,13 +22,51 @@ const ViewAppointments = ({ handleBack }) => {
       });
   }, []);
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Done':
+        return 'green';
+      case 'Pending':
+        return 'yellow';
+      default:
+        return 'black';
+    }
+  };
+
+  const handleUpdateStatus = (appointmentId) => {
+    // Send API request to update the appointment status
+    fetch(`http://localhost:8080/hospital/appointment/update/${appointmentId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ appointmentStatus: 'Done' }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Fetch the updated list of appointments
+        fetch('http://localhost:8080/hospital/appointment/list')
+          .then((response) => response.json())
+          .then((data) => {
+            // Update state with the fetched appointments
+            setAppointments(data);
+          })
+          .catch((error) => {
+            console.error('Error fetching appointments:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error updating appointment status:', error);
+      });
+  };
+  
   return (
     <div>
       <h3>View Appointments</h3>
       {loading ? (
         <p>Loading appointments...</p>
       ) : (
-        <div>
+        <div className="table-container">
           {appointments.length > 0 ? (
             <table>
               <thead>
@@ -38,6 +78,7 @@ const ViewAppointments = ({ handleBack }) => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>Status</th>
+                  <th>Actions</th> {/* Add a new table header for actions */}
                 </tr>
               </thead>
               <tbody>
@@ -49,7 +90,31 @@ const ViewAppointments = ({ handleBack }) => {
                     <td>{appointment.docId}</td>
                     <td>{appointment.appointmentDate}</td>
                     <td>{appointment.appointmentTime}</td>
-                    <td>{appointment.appointmentStatus}</td>
+                    <td>
+                      <span
+                        className="status-icon"
+                        style={{
+                          color: getStatusColor(appointment.appointmentStatus),
+                        }}
+                      >
+                        {appointment.appointmentStatus === 'Done' ? (
+                          <FaCheck />
+                        ) : (
+                          <FaClock />
+                        )}
+                      </span>
+                      {appointment.appointmentStatus}
+                    </td>
+                    <td>
+                      {appointment.appointmentStatus === 'Pending' && (
+                        <button
+                          onClick={() => handleUpdateStatus(appointment.apId)}
+                          className="update-button"
+                        >
+                          Update Status
+                        </button>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -57,7 +122,11 @@ const ViewAppointments = ({ handleBack }) => {
           ) : (
             <p>No appointments found.</p>
           )}
-          <button onClick={handleBack}>Back</button>
+          <div className="button-container">
+            <button className="back-button" onClick={handleBack}>
+              Back
+            </button>
+          </div>
         </div>
       )}
     </div>

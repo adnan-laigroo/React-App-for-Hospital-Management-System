@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaCheck } from 'react-icons/fa';
+import './UpdatePasswordForm.css';
 
-const UpdatePassword = () => {
-  const handleUpdatePassword = () => {
-    const username = 'doctor'; // Replace with actual username
-    const newPassword = 'newPassword'; // Replace with actual new password
+const UpdatePasswordForm = ({ handleBack }) => {
+  const [username, setUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [passwordUpdated, setPasswordUpdated] = useState(false);
 
-    // API call to update password
-    fetch(`/hospital/doctor/update/password/${username}`, {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    // Send API request to update the password
+    fetch(`http://localhost:8080/hospital/user/update/password/${username}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -15,21 +20,71 @@ const UpdatePassword = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Process the response or update state as needed
         console.log('Password updated:', data);
+        setPasswordUpdated(true);
       })
       .catch((error) => {
-        // Handle any errors
         console.error('Error updating password:', error);
       });
   };
 
+  const handleReset = () => {
+    setUsername('');
+    setNewPassword('');
+  };
+
   return (
-    <div>
-      <h3>Change Password</h3>
-      <button onClick={handleUpdatePassword}>Update</button>
+    <div className="update-password-form-container">
+      {!passwordUpdated ? (
+        <div>
+          <h3>Change Password</h3>
+          <form className="update-password-form" onSubmit={handleFormSubmit}>
+            <div className="form-group">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="input-field"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="new-password">New Password:</label>
+              <input
+                type="password"
+                id="new-password"
+                name="new-password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="input-field"
+              />
+            </div>
+            <div className="form-buttons">
+              <button type="reset" className="reset-button" onClick={handleReset}>
+                Reset
+              </button>
+              <button type="submit" className="submit-button">
+                Update Password
+              </button>
+            </div>
+          </form>
+          <button className="back-button" onClick={handleBack}>
+            Back
+          </button>
+        </div>
+      ) : (
+        <div>
+          <h3>Password Updated</h3>
+          <FaCheck className="confirm-tick" />
+          <button className="back-button" onClick={handleBack}>
+            Back
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default UpdatePassword;
+export default UpdatePasswordForm;

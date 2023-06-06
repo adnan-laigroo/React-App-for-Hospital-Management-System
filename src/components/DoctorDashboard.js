@@ -3,6 +3,8 @@ import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faUsers, faKey } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
+import ViewPatientList from './ViewPatientList';
+import UpdatePassword from './UpdatePassword';
 
 const DoctorDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
@@ -34,8 +36,10 @@ const DoctorDashboard = ({ handleLogout }) => {
       setDisplayedComponent('appointments');
     } else if (optionName === 'patients') {
       // Perform the necessary action for viewing patients
+      setDisplayedComponent('patients');
     } else if (optionName === 'password') {
       // Perform the necessary action for changing password
+      setDisplayedComponent('password');
     }
   };
 
@@ -79,6 +83,8 @@ const DoctorDashboard = ({ handleLogout }) => {
         <UpdatePasswordButton />
       </div>
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
+      {displayedComponent === 'patients' && <ViewPatientList handleBack={handleBack} />}
+      {displayedComponent === 'password' && <UpdatePassword handleBack={handleBack} />}
     </div>
   );
 };
