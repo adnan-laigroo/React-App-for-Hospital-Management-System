@@ -29,7 +29,7 @@ const UpdatePatientForm = ({ handleBack }) => {
           setPatientData({
             firstName: data.firstName ,
             lastName: data.lastName,
-            age: data.phoneNo,
+            phoneNo: data.phoneNo,
             address: data.address.firstLine + ', ' + data.address.secondLine + ', ' + data.address.pincode,
             symptom: data.symptom,
           });
@@ -57,7 +57,7 @@ const UpdatePatientForm = ({ handleBack }) => {
         secondLine: patientData.address.split(',')[1].trim(),
         pincode: patientData.address.split(',')[2].trim(),
       },
-      phoneNo: patientData.contactNumber,
+      phoneNo: patientData.phoneNo,
     };
 
     // Send API request to update the patient
@@ -87,6 +87,9 @@ const UpdatePatientForm = ({ handleBack }) => {
 
   return (
     <div className="update-patient-form-container">
+        <button type="button" className="back-button" onClick={handleBack}>
+            Back
+          </button>
       <h3>Update Patient</h3>
       <form className="update-patient-form" onSubmit={handleFormSubmit}>
         <div className="form-group">
@@ -170,9 +173,7 @@ const UpdatePatientForm = ({ handleBack }) => {
           <button type="submit" className="submit-button">
             Update
           </button>
-          <button type="button" className="back-button" onClick={handleBack}>
-            Back
-          </button>
+        
         </div>
       </form>
       {error && <p className="error-message">{error}</p>}

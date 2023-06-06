@@ -23,6 +23,11 @@ const ViewPatientList = ({ handleBack }) => {
 
   return (
     <div>
+       <div className="button-container"> {/* Add a container for the back button */}
+            <button className="back-button" onClick={handleBack}>
+              Back
+            </button>
+          </div>
       <h3>View Patients</h3>
       {loading ? (
         <p>Loading patients...</p>
@@ -59,11 +64,7 @@ const ViewPatientList = ({ handleBack }) => {
           ) : (
             <p>No patients found.</p>
           )}
-         <div className="button-container"> {/* Add a container for the back button */}
-            <button className="back-button" onClick={handleBack}>
-              Back
-            </button>
-          </div>
+        
         </div>
       )}
     </div>

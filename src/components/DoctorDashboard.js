@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faUsers, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faUsers, faKey,faArrowCircleDown } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
 import ViewPatientList from './ViewPatientList';
 import UpdatePassword from './UpdatePassword';
@@ -9,6 +9,7 @@ import UpdatePassword from './UpdatePassword';
 const DoctorDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
   const [displayedComponent, setDisplayedComponent] = useState(null);
+  const [optionsVisible, setOptionsVisible] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,17 +35,21 @@ const DoctorDashboard = ({ handleLogout }) => {
     // Handle the click event for each option
     if (optionName === 'appointments') {
       setDisplayedComponent('appointments');
+      setOptionsVisible(false);
     } else if (optionName === 'patients') {
       // Perform the necessary action for viewing patients
       setDisplayedComponent('patients');
+      setOptionsVisible(false);
     } else if (optionName === 'password') {
       // Perform the necessary action for changing password
       setDisplayedComponent('password');
+      setOptionsVisible(false);
     }
   };
 
   const handleBack = () => {
     setDisplayedComponent(null);
+    setOptionsVisible(true);
   };
 
   const ViewAppointmentsButton = () => (
@@ -78,9 +83,17 @@ const DoctorDashboard = ({ handleLogout }) => {
       </div>
       <h2>Welcome, Doctor!</h2>
       <div className="options">
+      {optionsVisible ? (
+          <>
         <ViewAppointmentsButton />
         <ViewPatientListButton />
         <UpdatePasswordButton />
+      </>
+      ) : ( <button className="option-button receptionist" onClick={() => setOptionsVisible(true)}>
+      <FontAwesomeIcon icon={faArrowCircleDown} size="2x" />
+      <span className="option-label">Show Options</span>
+    </button>
+      )}
       </div>
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
       {displayedComponent === 'patients' && <ViewPatientList handleBack={handleBack} />}

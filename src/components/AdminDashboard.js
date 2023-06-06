@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle, faCross, faDumpster, faDeleteLeft, faStop } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
 import ViewPatientList from './ViewPatientList';
 import UpdatePassword from './UpdatePassword';
@@ -10,6 +10,7 @@ import UpdateAppointmentForm from './UpdateAppointmentForm';
 import AddPatientForm from './AddPatientForm';
 import UpdatePatientForm from './UpdatePatientForm';
 import RegistrationForm from './RegistrationForm';
+import { FaRecycle } from 'react-icons/fa';
 
 const AdminDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
@@ -86,6 +87,14 @@ const AdminDashboard = ({ handleLogout }) => {
           <button className="option-button admin" onClick={() => handleOptionClick('addUser')}>
               <FontAwesomeIcon icon={faPlusCircle} size="2x" />
               <span className="option-label">Add User</span>
+            </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('editUser')}>
+              <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+              <span className="option-label">Edit User</span>
+            </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('deleteUser')}>
+              <FontAwesomeIcon icon={faStop} size="2x" />
+              <span className="option-label">Delete User</span>
             </button>
             <button className="option-button admin" onClick={() => handleOptionClick('addPatient')}>
               <FontAwesomeIcon icon={faUserPlus} size="2x" />

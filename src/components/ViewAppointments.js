@@ -62,6 +62,10 @@ const ViewAppointments = ({ handleBack }) => {
   
   return (
     <div>
+        
+            <button className="back-button" onClick={handleBack}>
+              Back
+            </button>
       <h3>View Appointments</h3>
       {loading ? (
         <p>Loading appointments...</p>
@@ -122,11 +126,7 @@ const ViewAppointments = ({ handleBack }) => {
           ) : (
             <p>No appointments found.</p>
           )}
-          <div className="button-container">
-            <button className="back-button" onClick={handleBack}>
-              Back
-            </button>
-          </div>
+        
         </div>
       )}
     </div>

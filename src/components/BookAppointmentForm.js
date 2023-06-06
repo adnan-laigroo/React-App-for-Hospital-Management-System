@@ -52,6 +52,9 @@ const BookAppointmentForm = ({ handleBack }) => {
 
   return (
     <div className="book-appointment-form-container">
+      <button className="back-button" onClick={handleBack}>
+            Back
+          </button>
       {!appointmentBooked ? (
         <div>
           <h3>Book Appointment</h3>
@@ -99,9 +102,7 @@ const BookAppointmentForm = ({ handleBack }) => {
               </button>
             </div>
           </form>
-          <button className="back-button" onClick={handleBack}>
-            Back
-          </button>
+          
         </div>
       ) : (
         <div>

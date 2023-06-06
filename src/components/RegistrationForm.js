@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { FaUserCheck, FaUserPlus } from 'react-icons/fa';
 import '../Homepage.css'; // Import the CSS file
 import './RegistrationForm.css'; // Import the CSS file
 
-const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
+const RegistrationForm = ({ handleBack }) => {
   const initialFormValues = {
     firstName: '',
     lastName: '',
@@ -14,6 +15,9 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
   };
 
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [userCreated, setUserCreated] = useState(false);
+  const [userRole, setUserRole] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +25,55 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
       ...prevValues,
       [name]: value,
     }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const endpoint =
+      formValues.role === 'Doctor'
+        ? 'http://localhost:8080/hospital/doctor/add'
+        : 'http://localhost:8080/hospital/receptionist/add';
+
+    const formData = {
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      email: formValues.email,
+      phoneNo: formValues.phoneNo,
+      role: formValues.role,
+      password: formValues.password,
+    };
+
+    if (formValues.role === 'Doctor') {
+      formData.speciality = formValues.speciality;
+    }
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error registering user');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('User registered:', data);
+        setUserCreated(true);
+        setUserRole(formValues.role);
+        setIsSubmitting(false);
+        setFormValues(initialFormValues);
+      })
+      .catch((error) => {
+        console.error('Error registering user:', error);
+        setIsSubmitting(false);
+        // Handle error or display an error message
+      });
   };
 
   const handleFormReset = () => {
@@ -35,8 +88,9 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
         </button>
       </div>
       <h1 className="register-title">Register</h1>
-      <form className="register-form" onSubmit={handleFormSubmit} onReset={handleFormReset}>
-        <div>
+      <form className="register-form" onSubmit={handleFormSubmit}>
+        {/* Form fields */}
+        <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
@@ -44,9 +98,10 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
             name="firstName"
             value={formValues.firstName}
             onChange={handleFormChange}
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="lastName">Last Name:</label>
           <input
             type="text"
@@ -54,9 +109,10 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
             name="lastName"
             value={formValues.lastName}
             onChange={handleFormChange}
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -64,9 +120,10 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
             name="email"
             value={formValues.email}
             onChange={handleFormChange}
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="phoneNo">Phone No:</label>
           <input
             type="text"
@@ -74,16 +131,17 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
             name="phoneNo"
             value={formValues.phoneNo}
             onChange={handleFormChange}
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="role">Role:</label>
           <select
-          type=""
             id="role"
             name="role"
             value={formValues.role}
             onChange={handleFormChange}
+            className="input-field"
           >
             <option value="">Select Role</option> {/* Default value */}
             <option value="Doctor">Doctor</option>
@@ -91,7 +149,7 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
           </select>
         </div>
         {formValues.role === 'Doctor' && (
-          <div>
+          <div className="form-group">
             <label htmlFor="speciality">Speciality:</label>
             <input
               type="text"
@@ -99,10 +157,11 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
               name="speciality"
               value={formValues.speciality}
               onChange={handleFormChange}
+              className="input-field"
             />
           </div>
         )}
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -110,15 +169,35 @@ const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
             name="password"
             value={formValues.password}
             onChange={handleFormChange}
+            className="input-field"
           />
         </div>
-        <div>
-          <button type="reset" className="reset-button">
+       {/* Form submission buttons */}
+       <div className="button-group">
+          <button type="reset" className="reset-button" onClick={handleFormReset}>
             Reset
           </button>
-          <button type="submit">Sign In</button>
+          <button type="submit" className="submit-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Sign In'}
+          </button>
         </div>
       </form>
+
+      {userCreated && (
+        <div className="success-message-top">
+          {userRole === 'Doctor' ? (
+            <>
+              <FaUserCheck className="success-icon" />
+              <p className="success-text">New doctor user created!</p>
+            </>
+          ) : (
+            <>
+              <FaUserPlus className="success-icon" />
+              <p className="success-text">New receptionist user created!</p>
+            </>
+          )}
+        </div>
+      )}
     </section>
   );
 };

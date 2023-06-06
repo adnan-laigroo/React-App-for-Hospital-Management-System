@@ -1,64 +1,88 @@
-/* register form */
-form.register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  form.register-form label {
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  /*form register*/
-section.form-section form.register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 24px;
-  }
-  
-  section.form-section form.register-form label {
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  section.form-section form.register-form input[type="text"],
-  section.form-section form.register-form input[type="email"],
-  section.form-section form.register-form select,
-  section.form-section form.register-form input[type="password"] {
-    width: 300px;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: center;
-  }
-  
-  section.form-section form.register-form button {
-    width: 150px;
-    padding: 8px;
-    color: #fff;
-    background-color: #4caf50;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-inline-start: 10px;
-  }
-  
-  section.form-section form.register-form button.reset-button {
-    background-color: #dc3545;
-    margin-inline-end: 100px;
-  }
-  
-  section.form-section form.register-form button:hover {
-    background-color: #45a049;
-  }
-  
-  section.form-section form.register-form button.reset-button:hover {
-    background-color: #c82333;
-  }
-  .register-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
+/* RegistrationForm.css */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.back-button-container {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.input-field {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  margin-top: 24px;
+}
+
+.reset-button,
+.submit-button {
+  width: 150px;
+  padding: 8px;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.submit-button {
+  background-color: #007bff;
+}
+
+.submit-button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.success-message-top {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.success-icon {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.success-text {
+  font-weight: bold;
+}

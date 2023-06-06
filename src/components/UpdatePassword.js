@@ -35,6 +35,9 @@ const UpdatePasswordForm = ({ handleBack }) => {
 
   return (
     <div className="update-password-form-container">
+       <button className="back-button" onClick={handleBack}>
+            Back
+          </button>
       {!passwordUpdated ? (
         <div>
           <h3>Change Password</h3>
@@ -70,17 +73,13 @@ const UpdatePasswordForm = ({ handleBack }) => {
               </button>
             </div>
           </form>
-          <button className="back-button" onClick={handleBack}>
-            Back
-          </button>
+       
         </div>
       ) : (
         <div>
           <h3>Password Updated</h3>
           <FaCheck className="confirm-tick" />
-          <button className="back-button" onClick={handleBack}>
-            Back
-          </button>
+         
         </div>
       )}
     </div>

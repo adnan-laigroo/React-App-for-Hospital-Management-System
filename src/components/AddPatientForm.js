@@ -63,8 +63,12 @@ const AddPatientForm = ({ handleBack }) => {
 
   return (
     <div className="add-patient-form-container">
+        <button type="button" className="back-button" onClick={handleBack}>
+            Back
+          </button>
       <h3>Add Patient</h3>
       {error && <p className="error-message">{error}</p>}
+      
       <form className="add-patient-form" onSubmit={handleFormSubmit}>
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
