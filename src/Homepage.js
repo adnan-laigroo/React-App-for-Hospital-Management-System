@@ -57,6 +57,7 @@ const Homepage = () => {
   };
 
   return (
+    <div className="homepage-container">
     <div>
       <Header />
       <Navigation activeButton={activeButton} handleButtonClick={handleButtonClick} />
@@ -93,6 +94,8 @@ const Homepage = () => {
 
       {/* Rest of the content */}
     </div>
+    </div>
+    
   );
 };
 

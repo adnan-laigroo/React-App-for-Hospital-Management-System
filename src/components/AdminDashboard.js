@@ -11,6 +11,7 @@ import AddPatientForm from './AddPatientForm';
 import UpdatePatientForm from './UpdatePatientForm';
 import RegistrationForm from './RegistrationForm';
 import { FaRecycle } from 'react-icons/fa';
+import EditUser from './EditUser';
 
 const AdminDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
@@ -36,7 +37,11 @@ const AdminDashboard = ({ handleLogout }) => {
       // Perform the necessary action for adding a new User
       setDisplayedComponent('addUser');
       setOptionsVisible(false);
-    } else if (optionName === 'addPatient') {
+    } else if (optionName === 'editUser') {
+      // Perform the necessary action for adding a new patient
+      setDisplayedComponent('editUser');
+      setOptionsVisible(false);
+    }else if (optionName === 'addPatient') {
       // Perform the necessary action for adding a new patient
       setDisplayedComponent('addPatient');
       setOptionsVisible(false);
@@ -145,6 +150,7 @@ const AdminDashboard = ({ handleLogout }) => {
         )}
       </div>
       {displayedComponent === 'addUser' && <RegistrationForm handleBack={handleBack} />}
+      {displayedComponent === 'editUser' && <EditUser handleBack={handleBack} />}
       {displayedComponent === 'book-appointment' && <BookAppointmentForm handleBack={handleBack} />}
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
       {displayedComponent === 'update-appointment' && <UpdateAppointmentForm handleBack={handleBack} />}
