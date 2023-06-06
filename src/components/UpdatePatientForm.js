@@ -58,6 +58,7 @@ const UpdatePatientForm = ({ handleBack }) => {
         pincode: patientData.address.split(',')[2].trim(),
       },
       phoneNo: patientData.phoneNo,
+      symptom: patientData.symptom,
     };
 
     // Send API request to update the patient
