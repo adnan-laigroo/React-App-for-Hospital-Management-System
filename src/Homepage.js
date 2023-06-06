@@ -6,14 +6,14 @@ import HomeSection from './components/HomeSection';
 import LoginForm from './components/LoginForm';
 import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
-import RegisterForm from './RegistrationForm';
 import DoctorDashboard from './components/DoctorDashboard';
 import ReceptionistDashboard from './components/ReceptionistDashboard';
+import AdminLoginForm from './components/AdminLoginForm';
 
 const Homepage = () => {
   const [activeButton, setActiveButton] = useState('Home');
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showUserLoginForm, setShowUserLoginForm] = useState(false);
+  const [showAdminLoginForm, setAdminLoginForm] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,17 +21,17 @@ const Homepage = () => {
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
-    setShowLoginForm(false);
-    setShowRegisterForm(false);
+    setShowUserLoginForm(false);
+    setAdminLoginForm(false);
     setShowAbout(false);
     setShowContact(false);
 
     if (buttonName === 'Home') {
       // Handle home button click if needed
-    } else if (buttonName === 'Login') {
-      setShowLoginForm(true);
-    } else if (buttonName === 'Register') {
-      setShowRegisterForm(true);
+    } else if (buttonName === 'UserLogin') {
+      setShowUserLoginForm(true);
+    } else if (buttonName === 'AdminLogin') {
+      setAdminLoginForm(true);
     } else if (buttonName === 'About') {
       setShowAbout(true);
     } else if (buttonName === 'Contact') {
@@ -41,8 +41,8 @@ const Homepage = () => {
 
   const handleBackButtonClick = () => {
     setActiveButton('Home');
-    setShowLoginForm(false);
-    setShowRegisterForm(false);
+    setShowUserLoginForm(false);
+    setAdminLoginForm(false);
     setShowAbout(false);
     setShowContact(false);
   };
@@ -65,14 +65,14 @@ const Homepage = () => {
         <HomeSection handleButtonClick={handleButtonClick} />
       )}
 
-      {showLoginForm && !loggedIn && (
+      {showUserLoginForm && !loggedIn && (
   
       <LoginForm handleBackButtonClick={handleBackButtonClick} handleFormSubmit={handleFormSubmit} />
       
       )}
 
-      {showRegisterForm && (
-        <RegisterForm handleBackButtonClick={handleBackButtonClick} handleFormSubmit={handleFormSubmit} />
+      {showAdminLoginForm && (
+        <AdminLoginForm handleBackButtonClick={handleBackButtonClick} handleFormSubmit={handleFormSubmit} />
       )}
 
       {showAbout && (

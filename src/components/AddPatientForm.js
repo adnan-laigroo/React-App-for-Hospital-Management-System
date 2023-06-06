@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './UpdatePasswordForm.css';
 
-const AddPatientForm = () => {
+const AddPatientForm = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNo, setPhoneNo] = useState('');

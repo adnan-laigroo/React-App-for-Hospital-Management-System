@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
 import ViewPatientList from './ViewPatientList';
 import UpdatePassword from './UpdatePassword';
@@ -9,8 +9,9 @@ import BookAppointmentForm from './BookAppointmentForm';
 import UpdateAppointmentForm from './UpdateAppointmentForm';
 import AddPatientForm from './AddPatientForm';
 import UpdatePatientForm from './UpdatePatientForm';
+import RegistrationForm from './RegistrationForm';
 
-const ReceptionistDashboard = ({ handleLogout }) => {
+const AdminDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
   const [displayedComponent, setDisplayedComponent] = useState(null);
   const [optionsVisible, setOptionsVisible] = useState(true);
@@ -30,7 +31,11 @@ const ReceptionistDashboard = ({ handleLogout }) => {
 
   const handleOptionClick = (optionName) => {
     // Handle the click event for each option
-    if (optionName === 'addPatient') {
+    if (optionName === 'addUser') {
+      // Perform the necessary action for adding a new User
+      setDisplayedComponent('addUser');
+      setOptionsVisible(false);
+    } else if (optionName === 'addPatient') {
       // Perform the necessary action for adding a new patient
       setDisplayedComponent('addPatient');
       setOptionsVisible(false);
@@ -74,46 +79,51 @@ const ReceptionistDashboard = ({ handleLogout }) => {
           Logout
         </button>
       </div>
-      <h2>Welcome, Receptionist!</h2>
+      <h2>Welcome, Admin!</h2>
       <div className="options">
         {optionsVisible ? (
           <>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('addPatient')}>
+          <button className="option-button admin" onClick={() => handleOptionClick('addUser')}>
+              <FontAwesomeIcon icon={faPlusCircle} size="2x" />
+              <span className="option-label">Add User</span>
+            </button>
+            <button className="option-button admin" onClick={() => handleOptionClick('addPatient')}>
               <FontAwesomeIcon icon={faUserPlus} size="2x" />
               <span className="option-label">Add Patient</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('updatePatient')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('updatePatient')}>
               <FontAwesomeIcon icon={faEdit} size="2x" />
               <span className="option-label">Update Patient</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('patientList')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('patientList')}>
               <FontAwesomeIcon icon={faList} size="2x" />
               <span className="option-label">Patient List</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('addAppointment')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('addAppointment')}>
               <FontAwesomeIcon icon={faCalendarPlus} size="2x" />
               <span className="option-label">Add Appointment</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('updateAppointment')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('updateAppointment')}>
               <FontAwesomeIcon icon={faEdit} size="2x" />
               <span className="option-label">Update Appointment</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('viewAppointments')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('viewAppointments')}>
               <FontAwesomeIcon icon={faEye} size="2x" />
               <span className="option-label">View Appointments</span>
             </button>
-            <button className="option-button receptionist" onClick={() => handleOptionClick('updatePassword')}>
+            <button className="option-button admin" onClick={() => handleOptionClick('updatePassword')}>
               <FontAwesomeIcon icon={faKey} size="2x" />
               <span className="option-label">Update Password</span>
             </button>
           </>
         ) : (
-          <button className="option-button receptionist" onClick={() => setOptionsVisible(true)}>
+          <button className="option-button admin" onClick={() => setOptionsVisible(true)}>
             <FontAwesomeIcon icon={faArrowCircleDown} size="2x" />
             <span className="option-label">Show Options</span>
           </button>
         )}
       </div>
+      {displayedComponent === 'addUser' && <RegistrationForm handleBack={handleBack} />}
       {displayedComponent === 'book-appointment' && <BookAppointmentForm handleBack={handleBack} />}
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
       {displayedComponent === 'update-appointment' && <UpdateAppointmentForm handleBack={handleBack} />}
@@ -125,4 +135,4 @@ const ReceptionistDashboard = ({ handleLogout }) => {
   );
 };
 
-export default ReceptionistDashboard;
+export default AdminDashboard;

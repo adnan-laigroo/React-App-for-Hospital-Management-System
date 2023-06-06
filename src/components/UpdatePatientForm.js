@@ -5,11 +5,11 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 const UpdatePatientForm = ({ handleBack }) => {
   const [patId, setPatId] = useState('');
   const [patientData, setPatientData] = useState({
-    name: '',
-    age: '',
-    gender: '',
-    address: '',
-    contactNumber: '',
+      firstName: '',
+      lastName: '',
+      phoneNo: '',
+      address: '',
+      symptom: ''
   });
   const [error, setError] = useState('');
   const [initialLoad, setInitialLoad] = useState(true);
@@ -27,11 +27,11 @@ const UpdatePatientForm = ({ handleBack }) => {
         })
         .then((data) => {
           setPatientData({
-            name: data.firstName + ' ' + data.lastName,
-            age: data.age,
-            gender: data.gender,
+            firstName: data.firstName ,
+            lastName: data.lastName,
+            age: data.phoneNo,
             address: data.address.firstLine + ', ' + data.address.secondLine + ', ' + data.address.pincode,
-            contactNumber: data.phoneNo,
+            symptom: data.symptom,
           });
           setError('');
         })
@@ -50,8 +50,8 @@ const UpdatePatientForm = ({ handleBack }) => {
     // Prepare updated patient data
     const updatedPatientData = {
       patId: patId,
-      firstName: patientData.name.split(' ')[0],
-      lastName: patientData.name.split(' ')[1],
+      firstName: patientData.firstName,
+      lastName: patientData.lastName,
       address: {
         firstLine: patientData.address.split(',')[0].trim(),
         secondLine: patientData.address.split(',')[1].trim(),
@@ -101,44 +101,45 @@ const UpdatePatientForm = ({ handleBack }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={patientData.name}
+            id="firstName"
+            name="firstName"
+            value={patientData.firstName}
             onChange={(e) =>
-              setPatientData({ ...patientData, name: e.target.value })
+              setPatientData({ ...patientData, firstName: e.target.value })
             }
             className="input-field"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="age">Age:</label>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={patientData.lastName}
+            onChange={(e) =>
+              setPatientData({ ...patientData, lastName: e.target.value })
+            }
+            className="input-field"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phoneNo">Phone Number:</label>
           <input
             type="number"
-            id="age"
-            name="age"
-            value={patientData.age}
+            id="phoneNo"
+            name="phoneNo"
+            value={patientData.phoneNo}
             onChange={(e) =>
-              setPatientData({ ...patientData, age: e.target.value })
+              setPatientData({ ...patientData, phoneNo: e.target.value })
             }
             className="input-field"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="gender">Gender:</label>
-          <input
-            type="text"
-            id="gender"
-            name="gender"
-            value={patientData.gender}
-            onChange={(e) =>
-              setPatientData({ ...patientData, gender: e.target.value })
-            }
-            className="input-field"
-          />
-        </div>
+        
         <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input
@@ -153,14 +154,14 @@ const UpdatePatientForm = ({ handleBack }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="contactNumber">Contact Number:</label>
+          <label htmlFor="symptom">Symptom:</label>
           <input
             type="text"
-            id="contactNumber"
-            name="contactNumber"
-            value={patientData.contactNumber}
+            id="symptom"
+            name="symptom"
+            value={patientData.symptom}
             onChange={(e) =>
-              setPatientData({ ...patientData, contactNumber: e.target.value })
+              setPatientData({ ...patientData, symptom: e.target.value })
             }
             className="input-field"
           />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Homepage.css'; // Import the CSS file
+import '../Homepage.css'; // Import the CSS file
 import './RegistrationForm.css'; // Import the CSS file
 
-const RegistrationForm = ({ handleBackButtonClick, handleFormSubmit }) => {
+const RegistrationForm = ({ handleBack, handleFormSubmit }) => {
   const initialFormValues = {
     firstName: '',
     lastName: '',
@@ -30,7 +30,7 @@ const RegistrationForm = ({ handleBackButtonClick, handleFormSubmit }) => {
   return (
     <section className="form-section">
       <div className="back-button-container">
-        <button className="back-button" onClick={handleBackButtonClick}>
+        <button className="back-button" onClick={handleBack}>
           Back
         </button>
       </div>

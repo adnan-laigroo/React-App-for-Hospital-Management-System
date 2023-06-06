@@ -5,8 +5,8 @@ const HomeSection = ({ handleButtonClick }) => {
     <section>
       <h2>Welcome to the Hospital Management System.</h2>
       <div id="session">
-        <button onClick={() => handleButtonClick('Login')}>Login</button>
-        <button onClick={() => handleButtonClick('Register')}>Register</button>
+        <button onClick={() => handleButtonClick('UserLogin')}>User Login</button>
+        <button onClick={() => handleButtonClick('AdminLogin')}>Admin Login</button>
       </div>
     </section>
   );

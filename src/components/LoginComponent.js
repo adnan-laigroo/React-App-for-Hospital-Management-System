@@ -4,8 +4,8 @@ function LoginComponent() {
   return (
     
                     <div id="session">
-                        <button>Login</button>
-                        <button>Register</button>
+                        <button>UserLogin</button>
+                        <button>AdminLogin</button>
                     </div>
   )
 }
