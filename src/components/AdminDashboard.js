@@ -11,6 +11,8 @@ import AddPatientForm from './AddPatientForm';
 import UpdatePatientForm from './UpdatePatientForm';
 import RegistrationForm from './RegistrationForm';
 import EditUser from './EditUser';
+import ViewUserList from './ViewUserList';
+import DeleteUser from './DeleteUser';
 
 const AdminDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
@@ -37,8 +39,16 @@ const AdminDashboard = ({ handleLogout }) => {
       setDisplayedComponent('addUser');
       setOptionsVisible(false);
     } else if (optionName === 'editUser') {
-      // Perform the necessary action for adding a new patient
+      // Perform the necessary action for editing a user
       setDisplayedComponent('editUser');
+      setOptionsVisible(false);
+    } else if (optionName === 'deleteUser') {
+      // Perform the necessary action for deleting a user
+      setDisplayedComponent('deleteUser');
+      setOptionsVisible(false);
+    }   else if (optionName === 'userList') {
+      // Perform the necessary action for getting the user list
+      setDisplayedComponent('userList');
       setOptionsVisible(false);
     }else if (optionName === 'addPatient') {
       // Perform the necessary action for adding a new patient
@@ -149,7 +159,9 @@ const AdminDashboard = ({ handleLogout }) => {
         )}
       </div>
       {displayedComponent === 'addUser' && <RegistrationForm handleBack={handleBack} />}
+      {displayedComponent === 'userList' && <ViewUserList handleBack={handleBack} />}
       {displayedComponent === 'editUser' && <EditUser handleBack={handleBack} />}
+      {displayedComponent === 'deleteUser' && <DeleteUser handleBack={handleBack} />}
       {displayedComponent === 'book-appointment' && <BookAppointmentForm handleBack={handleBack} />}
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
       {displayedComponent === 'update-appointment' && <UpdateAppointmentForm handleBack={handleBack} />}

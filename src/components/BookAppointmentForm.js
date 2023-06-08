@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
-import './UpdatePasswordForm.css';
+import './BookAppointmentForm.css';
 
 const BookAppointmentForm = ({ handleBack }) => {
   const [patId, setPatId] = useState('');

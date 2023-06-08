@@ -59,13 +59,12 @@ const ViewAppointments = ({ handleBack }) => {
         console.error('Error updating appointment status:', error);
       });
   };
-  
+
   return (
     <div>
-        
-            <button className="back-button" onClick={handleBack}>
-              Back
-            </button>
+      <button className="back-button" onClick={handleBack}>
+        Back
+      </button>
       <h3>View Appointments</h3>
       {loading ? (
         <p>Loading appointments...</p>
@@ -126,7 +125,7 @@ const ViewAppointments = ({ handleBack }) => {
           ) : (
             <p>No appointments found.</p>
           )}
-        
+
         </div>
       )}
     </div>
