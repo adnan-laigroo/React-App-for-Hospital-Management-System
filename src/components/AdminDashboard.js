@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle, faCross, faDumpster, faDeleteLeft, faStop, faDumpsterFire, faHammer, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown, faPlusCircle,faDumpster,   faWrench } from '@fortawesome/free-solid-svg-icons';
 import ViewAppointments from './ViewAppointments';
 import ViewPatientList from './ViewPatientList';
 import UpdatePassword from './UpdatePassword';
@@ -10,7 +10,6 @@ import UpdateAppointmentForm from './UpdateAppointmentForm';
 import AddPatientForm from './AddPatientForm';
 import UpdatePatientForm from './UpdatePatientForm';
 import RegistrationForm from './RegistrationForm';
-import { FaRecycle } from 'react-icons/fa';
 import EditUser from './EditUser';
 
 const AdminDashboard = ({ handleLogout }) => {

@@ -111,38 +111,40 @@ const AddPatientForm = ({ handleBack }) => {
             className="input-field"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="firstLine">Address - First Line:</label>
-          <input
-            type="text"
-            id="firstLine"
-            name="firstLine"
-            value={address.firstLine}
-            onChange={(e) => setAddress({ ...address, firstLine: e.target.value })}
-            className="input-field"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="secondLine">Address - Second Line:</label>
-          <input
-            type="text"
-            id="secondLine"
-            name="secondLine"
-            value={address.secondLine}
-            onChange={(e) => setAddress({ ...address, secondLine: e.target.value })}
-            className="input-field"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="pincode">Address - Pincode:</label>
-          <input
-            type="text"
-            id="pincode"
-            name="pincode"
-            value={address.pincode}
-            onChange={(e) => setAddress({ ...address, pincode: e.target.value })}
-            className="input-field"
-          />
+        <div className="address-group">
+          <div className="form-group">
+            <label htmlFor="firstLine">Address - First Line:</label>
+            <input
+              type="text"
+              id="firstLine"
+              name="firstLine"
+              value={address.firstLine}
+              onChange={(e) => setAddress({ ...address, firstLine: e.target.value })}
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="secondLine">Address - Second Line:</label>
+            <input
+              type="text"
+              id="secondLine"
+              name="secondLine"
+              value={address.secondLine}
+              onChange={(e) => setAddress({ ...address, secondLine: e.target.value })}
+              className="input-field"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="pincode">Address - Pincode:</label>
+            <input
+              type="text"
+              id="pincode"
+              name="pincode"
+              value={address.pincode}
+              onChange={(e) => setAddress({ ...address, pincode: e.target.value })}
+              className="input-field"
+            />
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="symptom">Symptom:</label>
