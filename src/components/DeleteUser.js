@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserMd, faUser } from '@fortawesome/free-solid-svg-icons';
 import './EditUser.css';
-import UpdateDoctor from './UpdateDoctor';
-import UpdateReceptionist from './UpdateReceptionist';
 import DeleteDoctor from './DeleteDoctor';
 import DeleteReceptionist from './DeleteReceptionist';
 

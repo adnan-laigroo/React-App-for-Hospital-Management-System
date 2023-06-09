@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserMd, faUser } from '@fortawesome/free-solid-svg-icons';
-import './EditUser.css';
-import UpdateDoctor from './UpdateDoctor';
+import './ViewUser.css'; // Import the updated CSS file
 import UpdateReceptionist from './UpdateReceptionist';
+import ViewDoctors from './ViewDoctors';
 
 const UserOptions = ({ handleOptionClick, handleBack }) => {
   return (
@@ -11,20 +11,20 @@ const UserOptions = ({ handleOptionClick, handleBack }) => {
       <button className="back-button-left" onClick={handleBack}>
         <span className="back-button-text">Back</span>
       </button>
-      <div className="edit-user-options">
+      <div className="view-user-options"> {/* Updated CSS class name */}
         <button
-          className="edit-user-button"
+          className="view-user-button"
           onClick={() => handleOptionClick('doctor')}
         >
-          <FontAwesomeIcon icon={faUserMd} className="edit-user-icon" />
-          <span className="edit-user-label">View Doctor List</span>
+          <FontAwesomeIcon icon={faUserMd} className="view-user-icon" /> {/* Updated CSS class name */}
+          <span className="view-user-label">View Doctor List</span> {/* Updated CSS class name */}
         </button>
         <button
-          className="edit-user-button"
+          className="view-user-button"
           onClick={() => handleOptionClick('receptionist')}
         >
-          <FontAwesomeIcon icon={faUser} className="edit-user-icon" />
-          <span className="edit-user-label">View Receptionist List</span>
+          <FontAwesomeIcon icon={faUser} className="view-user-icon" /> {/* Updated CSS class name */}
+          <span className="view-user-label">View Receptionist List</span> {/* Updated CSS class name */}
         </button>
       </div>
     </div>
@@ -46,16 +46,16 @@ const ViewUserList = ({ handleBack }) => {
   };
 
   return (
-    <div className="edit-user-container">
+    <div className="view-user-container"> {/* Updated CSS class name */}
       {optionsVisible ? (
         <UserOptions handleOptionClick={handleOptionClick} handleBack={handleBack} />
       ) : (
-        <div className="edit-user-content">
+        <div className="view-user-content"> {/* Updated CSS class name */}
           <button className="back-button-left" onClick={handleToggleOptions}>
             <span className="back-button-text">Back</span>
           </button>
           {selectedOption === 'doctor' ? (
-            <UpdateDoctor handleBack={handleBack} />
+            <ViewDoctors handleBack={handleBack} />
           ) : (
             <UpdateReceptionist handleBack={handleBack} />
           )}

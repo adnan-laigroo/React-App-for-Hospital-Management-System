@@ -52,11 +52,11 @@ const UpdateDoctor = ({ handleBack }) => {
 
     // Prepare updated doctor data
     const updatedDoctorData = {
-      firstName : firstName,
-      lastName : lastName,
-         email :   email,
-            phoneNo:phoneNo,
-            speciality: speciality
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNo: phoneNo,
+      speciality: speciality
     };
 
     // Send API request to update the appointment
@@ -144,10 +144,11 @@ const UpdateDoctor = ({ handleBack }) => {
           />
         </div>
         <div className="form-buttons">
-          <button type="submit" className="submit-button">
-            Update
-          </button>
-        
+          <div className="update-button-container">
+            <button type="submit" className="submit-button">
+              Update
+            </button>
+          </div>
         </div>
       </form>
       {error && <p className="error-message">{error}</p>}

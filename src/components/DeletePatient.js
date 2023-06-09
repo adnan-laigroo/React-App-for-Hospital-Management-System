@@ -3,102 +3,101 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './DeleteUser.css';
 
-const DeleteDoctor = ({ handleBack }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [speciality, setSpeciality] = useState('');
+const DeletePatient = ({ handleBack }) => {
+  const [patId, setPatId] = useState('');
+  const [patientData, setPatientData] = useState(null);
   const [error, setError] = useState('');
-  const [initialLoad, setInitialLoad] = useState(true);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-  const [confirmed, setConfirmed] = useState(false); // Confirmation state
+  const [confirmed, setConfirmed] = useState(false);
 
   useEffect(() => {
-    if (!initialLoad) {
-      // Fetch doctor details based on email
-      if (email) {
-        fetch(`http://localhost:8080/hospital/doctor/get/${email}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Error fetching doctor details');
-            }
-            return response.json();
-          })
-          .then((data) => {
-            const { firstName, lastName, email, phoneNo, speciality } = data;
-            setFirstName(firstName);
-            setLastName(lastName);
-            setPhoneNo(phoneNo);
-            setSpeciality(speciality);
-            setError('');
-          })
-          .catch((error) => {
-            console.error('Error fetching doctor details:', error);
-            setError('Failed to fetch doctor details. Please try again.');
-          });
-      }
-    } else {
-      setInitialLoad(false);
+    if (!patId) {
+      setPatientData(null);
+      return;
     }
-  }, [email, initialLoad]);
+
+    fetchPatientDetails();
+  }, [patId]);
+
+  const fetchPatientDetails = () => {
+    fetch(`http://localhost:8080/hospital/patient/get/${patId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error fetching patient details');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPatientData(data);
+        setError('');
+      })
+      .catch((error) => {
+        console.error('Error fetching patient details:', error);
+        setError('Failed to fetch patient details. Please try again.');
+      });
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Check if confirmed before deleting
     if (!confirmed) {
       setError('Please confirm deletion by checking the box.');
       return;
     }
 
-    // Send API request to delete the doctor
-    fetch(`http://localhost:8080/hospital/doctor/delete/${email}`, {
+    deletePatient();
+  };
+
+  const deletePatient = () => {
+    fetch(`http://localhost:8080/hospital/patient/delete/${patId}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Error deleting doctor');
+          throw new Error('Error deleting patient');
         }
         setDeleteSuccess(true);
         setError('');
       })
       .catch((error) => {
-        console.error('Error deleting doctor:', error);
-        setError('Failed to delete doctor. Please try again.');
+        console.error('Error deleting patient:', error);
+        setError('Failed to delete patient. Please try again.');
       });
   };
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setFirstName('');
-    setLastName('');
-    setPhoneNo('');
-    setSpeciality('');
-    setError('');
+  const handlePatIdChange = (e) => {
+    setPatId(e.target.value);
+    setPatientData(null);
   };
 
   const handleCheckboxChange = (e) => {
     setConfirmed(e.target.checked);
-    setError(''); // Clear any error messages when checkbox state changes
+    setError('');
   };
 
   return (
+
     <div className="delete-user-container">
-      <h3>Delete Doctor</h3>
+      <div className="back-button-container">
+        <button className="back-button" onClick={handleBack}>
+          <span className="back-button-text">Back</span>
+        </button>
+      </div>
+      <h3>Delete Patient</h3>
       <form className="delete-user-form" onSubmit={handleFormSubmit}>
+
         <div className="user-form-group">
-          <label htmlFor="email">Email ID:</label>
+          <label htmlFor="patId">Patient ID:</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
+            type="text"
+            id="patId"
+            name="patId"
+            value={patId}
             className="input-field"
-            onChange={handleEmailChange}
+            onChange={handlePatIdChange}
           />
         </div>
-        {firstName && (
+        {patientData && (
           <>
             <div className="user-form-group">
               <label htmlFor="firstName">First Name:</label>
@@ -106,7 +105,7 @@ const DeleteDoctor = ({ handleBack }) => {
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={firstName}
+                value={patientData.firstName}
                 className="input-field"
                 readOnly
               />
@@ -117,7 +116,7 @@ const DeleteDoctor = ({ handleBack }) => {
                 type="text"
                 id="lastName"
                 name="lastName"
-                value={lastName}
+                value={patientData.lastName}
                 className="input-field"
                 readOnly
               />
@@ -128,18 +127,18 @@ const DeleteDoctor = ({ handleBack }) => {
                 type="number"
                 id="phoneNo"
                 name="phoneNo"
-                value={phoneNo}
+                value={patientData.phoneNo}
                 className="input-field"
                 readOnly
               />
             </div>
             <div className="user-form-group">
-              <label htmlFor="speciality">Speciality:</label>
+              <label htmlFor="symptom">Symptom:</label>
               <input
                 type="text"
-                id="speciality"
-                name="speciality"
-                value={speciality}
+                id="symptom"
+                name="symptom"
+                value={patientData.symptom}
                 className="input-field"
                 readOnly
               />
@@ -168,11 +167,11 @@ const DeleteDoctor = ({ handleBack }) => {
       {deleteSuccess && (
         <div className="success-message">
           <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-          <p>Doctor deleted successfully.</p>
+          <p>Patient deleted successfully.</p>
         </div>
       )}
     </div>
   );
 };
 
-export default DeleteDoctor;
+export default DeletePatient;

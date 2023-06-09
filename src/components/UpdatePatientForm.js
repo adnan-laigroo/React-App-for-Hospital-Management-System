@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import './UpdatePatientForm.css'
+import './UpdatePatientForm.css';
 
 const UpdatePatientForm = ({ handleBack }) => {
   const [patId, setPatId] = useState('');
   const [patientData, setPatientData] = useState({
-      firstName: '',
-      lastName: '',
-      phoneNo: '',
-      address: '',
-      symptom: ''
+    firstName: '',
+    lastName: '',
+    phoneNo: '',
+    address: '',
+    symptom: ''
   });
   const [error, setError] = useState('');
   const [initialLoad, setInitialLoad] = useState(true);
@@ -28,7 +28,7 @@ const UpdatePatientForm = ({ handleBack }) => {
         })
         .then((data) => {
           setPatientData({
-            firstName: data.firstName ,
+            firstName: data.firstName,
             lastName: data.lastName,
             phoneNo: data.phoneNo,
             address: data.address.firstLine + ', ' + data.address.secondLine + ', ' + data.address.pincode,
@@ -89,9 +89,9 @@ const UpdatePatientForm = ({ handleBack }) => {
 
   return (
     <div className="update-patient-form-container">
-        <button type="button" className="back-button" onClick={handleBack}>
-            Back
-          </button>
+      <button type="button" className="back-button" onClick={handleBack}>
+        Back
+      </button>
       <h3>Update Patient</h3>
       <form className="update-patient-form" onSubmit={handleFormSubmit}>
         <div className="form-group">
@@ -112,9 +112,7 @@ const UpdatePatientForm = ({ handleBack }) => {
             id="firstName"
             name="firstName"
             value={patientData.firstName}
-            onChange={(e) =>
-              setPatientData({ ...patientData, firstName: e.target.value })
-            }
+            onChange={(e) => setPatientData({ ...patientData, firstName: e.target.value })}
             className="input-field"
           />
         </div>
@@ -125,9 +123,7 @@ const UpdatePatientForm = ({ handleBack }) => {
             id="lastName"
             name="lastName"
             value={patientData.lastName}
-            onChange={(e) =>
-              setPatientData({ ...patientData, lastName: e.target.value })
-            }
+            onChange={(e) => setPatientData({ ...patientData, lastName: e.target.value })}
             className="input-field"
           />
         </div>
@@ -138,13 +134,11 @@ const UpdatePatientForm = ({ handleBack }) => {
             id="phoneNo"
             name="phoneNo"
             value={patientData.phoneNo}
-            onChange={(e) =>
-              setPatientData({ ...patientData, phoneNo: e.target.value })
-            }
+            onChange={(e) => setPatientData({ ...patientData, phoneNo: e.target.value })}
             className="input-field"
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input
@@ -152,9 +146,7 @@ const UpdatePatientForm = ({ handleBack }) => {
             id="address"
             name="address"
             value={patientData.address}
-            onChange={(e) =>
-              setPatientData({ ...patientData, address: e.target.value })
-            }
+            onChange={(e) => setPatientData({ ...patientData, address: e.target.value })}
             className="input-field"
           />
         </div>
@@ -165,9 +157,7 @@ const UpdatePatientForm = ({ handleBack }) => {
             id="symptom"
             name="symptom"
             value={patientData.symptom}
-            onChange={(e) =>
-              setPatientData({ ...patientData, symptom: e.target.value })
-            }
+            onChange={(e) => setPatientData({ ...patientData, symptom: e.target.value })}
             className="input-field"
           />
         </div>
@@ -175,7 +165,6 @@ const UpdatePatientForm = ({ handleBack }) => {
           <button type="submit" className="submit-button">
             Update
           </button>
-        
         </div>
       </form>
       {error && <p className="error-message">{error}</p>}

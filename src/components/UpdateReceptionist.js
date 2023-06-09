@@ -128,7 +128,7 @@ const UpdateReceptionist = ({ handleBack }) => {
             className="input-field"
           />
         </div>
-        <div className="form-buttons">
+        <div className="update-button-container">
           <button type="submit" className="submit-button">
             Update
           </button>

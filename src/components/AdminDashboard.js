@@ -13,6 +13,8 @@ import RegistrationForm from './RegistrationForm';
 import EditUser from './EditUser';
 import ViewUserList from './ViewUserList';
 import DeleteUser from './DeleteUser';
+import DeletePatient from './DeletePatient';
+import DeleteAppointment from './DeleteAppointment';
 
 const AdminDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');
@@ -58,6 +60,10 @@ const AdminDashboard = ({ handleLogout }) => {
       // Perform the necessary action for updating a patient
       setDisplayedComponent('updatePatient');
       setOptionsVisible(false);
+    } else if (optionName === 'deletePatient') {
+      // Perform the necessary action for deleting a patient
+      setDisplayedComponent('deletePatient');
+      setOptionsVisible(false);
     } else if (optionName === 'patientList') {
       // Perform the necessary action for getting the patient list
       setDisplayedComponent('patients');
@@ -73,6 +79,10 @@ const AdminDashboard = ({ handleLogout }) => {
     } else if (optionName === 'viewAppointments') {
       // Perform the necessary action for viewing appointments
       setDisplayedComponent('appointments');
+      setOptionsVisible(false);
+    } else if (optionName === 'deleteAppointment') {
+      // Perform the necessary action for deleting appointment
+      setDisplayedComponent('deleteAppointment');
       setOptionsVisible(false);
     } else if (optionName === 'updatePassword') {
       // Perform the necessary action for updating the receptionist's password
@@ -165,10 +175,12 @@ const AdminDashboard = ({ handleLogout }) => {
       {displayedComponent === 'book-appointment' && <BookAppointmentForm handleBack={handleBack} />}
       {displayedComponent === 'appointments' && <ViewAppointments handleBack={handleBack} />}
       {displayedComponent === 'update-appointment' && <UpdateAppointmentForm handleBack={handleBack} />}
+      {displayedComponent === 'deleteAppointment' && <DeleteAppointment handleBack={handleBack} />}
       {displayedComponent === 'patients' && <ViewPatientList handleBack={handleBack} />}
       {displayedComponent === 'password' && <UpdatePassword handleBack={handleBack} />}
       {displayedComponent === 'addPatient' && <AddPatientForm handleBack={handleBack} />}
       {displayedComponent === 'updatePatient' && <UpdatePatientForm handleBack={handleBack} />}
+      {displayedComponent === 'deletePatient' && <DeletePatient handleBack={handleBack} />}
     </div>
   );
 };
