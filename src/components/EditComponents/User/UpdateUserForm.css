@@ -1,11 +1,11 @@
-.update-patient-form-container {
+.update-appointment-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
 }
 
-.update-patient-form {
+.update-appointment-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   background-color: #f8f8f8;
 }
 
-.update-patient-form h3 {
+.update-appointment-form h3 {
   font-size: 20px;
   margin-bottom: 10px;
   color: #333;
@@ -41,42 +41,32 @@
 
 .form-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.update-button-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
 }
 
 .submit-button {
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: #4caf50;
-  color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 14px;
   font-weight: bold;
+  color: #fff;
+  background-color: #4caf50;
 }
 
 .submit-button:hover {
   background-color: #45a049;
-}
-
-.back-button {
-  margin-bottom: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #ccc;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.back-button:hover {
-  background-color: #999;
 }
 
 .error-message {

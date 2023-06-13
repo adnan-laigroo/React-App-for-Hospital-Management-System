@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './Homepage.css';
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import HomeSection from './components/HomeSection';
-import LoginForm from './components/LoginForm';
-import AboutSection from './components/AboutSection';
-import ContactSection from './components/ContactSection';
-import DoctorDashboard from './components/DoctorDashboard';
-import ReceptionistDashboard from './components/ReceptionistDashboard';
-import AdminLoginForm from './components/AdminLoginForm';
+import Header from './Header';
+import Navigation from './Navigation';
+import HomeSection from './HomeSection';
+import LoginForm from '../Login_Forms/LoginForm';
+import AboutSection from './AboutSection';
+import ContactSection from './ContactSection';
+import DoctorDashboard from '../Dashboards/DoctorDashboard';
+import ReceptionistDashboard from '../Dashboards/ReceptionistDashboard';
+import AdminLoginForm from '../Login_Forms/AdminLoginForm';
 
 const Homepage = () => {
   const [activeButton, setActiveButton] = useState('Home');

@@ -1,13 +1,13 @@
 .user-list-container {
   margin-top: 20px;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.back-button {
+  }
+  
+  .back-button {
   margin-top: 10px;
   padding: 8px 16px;
   border: none;
@@ -16,40 +16,42 @@
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
+  }
+  
+  .back-button:hover {
   background-color: #999;
-}
-
-.user-table {
+  }
+  
+  .user-table {
   width: 100%;
   border-collapse: collapse;
-}
-
-.user-table th,
-.user-table td {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-table th,
+  .user-table td {
   padding: 12px 20px;
   text-align: left;
   border-bottom: 1px solid #ddd;
-}
-
-.user-table th {
+  }
+  
+  .user-table th {
   background-color: #f2f2f2;
   font-weight: bold;
-}
-
-.user-table tr:nth-child(even) {
+  color: #333;
+  }
+  
+  .user-table tr:nth-child(even) {
   background-color: #f9f9f9;
-}
-
-.user-table .action-buttons {
+  }
+  
+  .user-table .action-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.user-table .action-buttons button {
+  }
+  
+  .user-table .action-buttons button {
   margin-right: 5px;
   padding: 8px;
   border: none;
@@ -58,20 +60,20 @@
   transition: background-color 0.3s ease;
   font-size: 14px;
   color: #fff;
-}
-
-.user-table .action-buttons .delete-button {
+  }
+  
+  .user-table .action-buttons .delete-button {
   background-color: #ff0000;
-}
-
-.user-table .action-buttons .delete-button:hover {
+  }
+  
+  .user-table .action-buttons .delete-button:hover {
   background-color: #cc0000;
-}
-
-.user-table .action-buttons .edit-button {
+  }
+  
+  .user-table .action-buttons .edit-button {
   background-color: #333;
-}
-
-.user-table .action-buttons .edit-button:hover {
+  }
+  
+  .user-table .action-buttons .edit-button:hover {
   background-color: #222;
-}
+  }

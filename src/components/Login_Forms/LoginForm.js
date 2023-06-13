@@ -1,29 +1,44 @@
 import React, { useState } from 'react';
-import AdminDashboard from './AdminDashboard';
-    const AdminLoginForm = ({handleBackButtonClick}) => {
+import ReceptionistDashboard from '../Dashboards/ReceptionistDashboard';
+import DoctorDashboard from '../Dashboards/DoctorDashboard';
+    const LoginForm = ({handleBackButtonClick}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
+
+    // Perform authentication and validation logic here
+    // Example: Check if the username and password are valid
+
+    if (username === 'doctor' && password === 'password') {
       // Redirect to the doctor dashboard
       setLoggedIn(true);
+      setUserRole('Doctor');
+    } else if (username === 'receptionist' && password === 'password') {
+      // Redirect to the receptionist dashboard
+      setLoggedIn(true);
+      setUserRole('Receptionist');
     }
-   
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
+    setUserRole('');
   };
   if (loggedIn) {
-    
+    if (userRole === 'Doctor') {
       return (
-        <AdminDashboard handleLogout={handleLogout} />
+        <DoctorDashboard handleLogout={handleLogout} />
+      );
+    } else if (userRole === 'Receptionist') {
+      return (
+        <ReceptionistDashboard handleLogout={handleLogout} />
       );
     }
-  
+  }
 
   return (
     <section className="form-section">
@@ -65,4 +80,4 @@ import AdminDashboard from './AdminDashboard';
   );
 };
 
-export default AdminLoginForm;
+export default LoginForm;

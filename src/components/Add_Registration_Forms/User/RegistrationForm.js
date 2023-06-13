@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaUserCheck, FaUserPlus } from 'react-icons/fa';
-import '../Homepage.css'; // Import the CSS file
 import './RegistrationForm.css'; // Import the CSS file
 
 const RegistrationForm = ({ handleBack }) => {

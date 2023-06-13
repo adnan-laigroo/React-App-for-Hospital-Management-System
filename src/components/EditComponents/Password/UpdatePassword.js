@@ -64,7 +64,7 @@ const UpdatePasswordForm = ({ handleBack }) => {
                 className="input-field"
               />
             </div>
-            <div className="form-buttons">
+            <div className="form-password-buttons">
               <button type="reset" className="reset-button" onClick={handleReset}>
                 Reset
               </button>

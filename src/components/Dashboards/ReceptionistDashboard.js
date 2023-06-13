@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faEdit, faList, faCalendarPlus, faKey, faEye, faArrowCircleDown } from '@fortawesome/free-solid-svg-icons';
-import ViewAppointments from './ViewAppointments';
-import ViewPatientList from './ViewPatientList';
-import UpdatePassword from './UpdatePassword';
-import BookAppointmentForm from './BookAppointmentForm';
-import UpdateAppointmentForm from './UpdateAppointmentForm';
-import AddPatientForm from './AddPatientForm';
-import UpdatePatientForm from './UpdatePatientForm';
+import ViewAppointments from '../ViewComponents/Patient_Appointment/ViewAppointments';
+import ViewPatientList from '../ViewComponents/Patient_Appointment/ViewPatientList';
+import UpdatePassword from '../EditComponents/Password/UpdatePassword';
+import BookAppointmentForm from '../Add_Registration_Forms/Appointmennt/BookAppointmentForm';
+import UpdateAppointmentForm from '../EditComponents/Appointment/UpdateAppointmentForm';
+import AddPatientForm from '../Add_Registration_Forms/Patient/AddPatientForm';
+import UpdatePatientForm from '../EditComponents/Patient/UpdatePatientForm';
 
 const ReceptionistDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');

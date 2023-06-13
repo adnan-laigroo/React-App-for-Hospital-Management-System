@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faUsers, faKey,faArrowCircleDown } from '@fortawesome/free-solid-svg-icons';
-import ViewAppointments from './ViewAppointments';
-import ViewPatientList from './ViewPatientList';
-import UpdatePassword from './UpdatePassword';
+import ViewAppointments from '../ViewComponents/Patient_Appointment/ViewAppointments';
+import ViewPatientList from '../ViewComponents/Patient_Appointment/ViewPatientList';
+import UpdatePassword from '../EditComponents/Password/UpdatePassword';
 
 const DoctorDashboard = ({ handleLogout }) => {
   const [currentDateTime, setCurrentDateTime] = useState('');

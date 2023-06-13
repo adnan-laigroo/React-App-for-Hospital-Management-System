@@ -1,44 +1,29 @@
 import React, { useState } from 'react';
-import ReceptionistDashboard from './ReceptionistDashboard';
-import DoctorDashboard from './DoctorDashboard';
-    const LoginForm = ({handleBackButtonClick}) => {
+import AdminDashboard from '../Dashboards/AdminDashboard';
+    const AdminLoginForm = ({handleBackButtonClick}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    // Perform authentication and validation logic here
-    // Example: Check if the username and password are valid
-
-    if (username === 'doctor' && password === 'password') {
+    if (username === 'admin' && password === 'admin') {
       // Redirect to the doctor dashboard
       setLoggedIn(true);
-      setUserRole('Doctor');
-    } else if (username === 'receptionist' && password === 'password') {
-      // Redirect to the receptionist dashboard
-      setLoggedIn(true);
-      setUserRole('Receptionist');
     }
+   
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
-    setUserRole('');
   };
   if (loggedIn) {
-    if (userRole === 'Doctor') {
+    
       return (
-        <DoctorDashboard handleLogout={handleLogout} />
-      );
-    } else if (userRole === 'Receptionist') {
-      return (
-        <ReceptionistDashboard handleLogout={handleLogout} />
+        <AdminDashboard handleLogout={handleLogout} />
       );
     }
-  }
+  
 
   return (
     <section className="form-section">
@@ -80,4 +65,4 @@ import DoctorDashboard from './DoctorDashboard';
   );
 };
 
-export default LoginForm;
+export default AdminLoginForm;

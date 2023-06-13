@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import './UpdateAppointmentForm.css';
+import './UpdateUserForm.css';
 
 const UpdateDoctor = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
@@ -143,13 +143,11 @@ const UpdateDoctor = ({ handleBack }) => {
             className="input-field"
           />
         </div>
-        <div className="form-buttons">
           <div className="update-button-container">
             <button type="submit" className="submit-button">
               Update
             </button>
           </div>
-        </div>
       </form>
       {error && <p className="error-message">{error}</p>}
       {updateSuccess && (

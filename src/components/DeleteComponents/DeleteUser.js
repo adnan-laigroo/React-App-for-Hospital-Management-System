@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserMd, faUser } from '@fortawesome/free-solid-svg-icons';
-import './ViewUser.css'; // Import the updated CSS file
-import UpdateReceptionist from './UpdateReceptionist';
-import ViewDoctors from './ViewDoctors';
+import './DeleteUserOptions.css';
+import DeleteDoctor from './DeleteDoctor';
+import DeleteReceptionist from './DeleteReceptionist';
 
 const UserOptions = ({ handleOptionClick, handleBack }) => {
   return (
@@ -11,27 +11,27 @@ const UserOptions = ({ handleOptionClick, handleBack }) => {
       <button className="back-button-left" onClick={handleBack}>
         <span className="back-button-text">Back</span>
       </button>
-      <div className="view-user-options"> {/* Updated CSS class name */}
+      <div className="edit-user-options">
         <button
-          className="view-user-button"
+          className="edit-user-button"
           onClick={() => handleOptionClick('doctor')}
         >
-          <FontAwesomeIcon icon={faUserMd} className="view-user-icon" /> {/* Updated CSS class name */}
-          <span className="view-user-label">View Doctor List</span> {/* Updated CSS class name */}
+          <FontAwesomeIcon icon={faUserMd} className="edit-user-icon" />
+          <span className="edit-user-label">Delete Doctor</span>
         </button>
         <button
-          className="view-user-button"
+          className="edit-user-button"
           onClick={() => handleOptionClick('receptionist')}
         >
-          <FontAwesomeIcon icon={faUser} className="view-user-icon" /> {/* Updated CSS class name */}
-          <span className="view-user-label">View Receptionist List</span> {/* Updated CSS class name */}
+          <FontAwesomeIcon icon={faUser} className="edit-user-icon" />
+          <span className="edit-user-label">Delete Receptionist</span>
         </button>
       </div>
     </div>
   );
 };
 
-const ViewUserList = ({ handleBack }) => {
+const DeleteUser = ({ handleBack }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [optionsVisible, setOptionsVisible] = useState(true);
 
@@ -46,18 +46,18 @@ const ViewUserList = ({ handleBack }) => {
   };
 
   return (
-    <div className="view-user-container"> {/* Updated CSS class name */}
+    <div className="edit-user-container">
       {optionsVisible ? (
         <UserOptions handleOptionClick={handleOptionClick} handleBack={handleBack} />
       ) : (
-        <div className="view-user-content"> {/* Updated CSS class name */}
+        <div className="edit-user-content">
           <button className="back-button-left" onClick={handleToggleOptions}>
             <span className="back-button-text">Back</span>
           </button>
           {selectedOption === 'doctor' ? (
-            <ViewDoctors handleBack={handleBack} />
+            <DeleteDoctor handleBack={handleBack} />
           ) : (
-            <UpdateReceptionist handleBack={handleBack} />
+            <DeleteReceptionist handleBack={handleBack} />
           )}
         </div>
       )}
@@ -65,4 +65,4 @@ const ViewUserList = ({ handleBack }) => {
   );
 };
 
-export default ViewUserList;
+export default DeleteUser;

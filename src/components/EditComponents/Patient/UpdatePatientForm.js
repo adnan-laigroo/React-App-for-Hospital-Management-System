@@ -161,7 +161,7 @@ const UpdatePatientForm = ({ handleBack }) => {
             className="input-field"
           />
         </div>
-        <div className="form-buttons">
+        <div className="form-update-buttons">
           <button type="submit" className="submit-button">
             Update
           </button>

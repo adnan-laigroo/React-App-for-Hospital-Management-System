@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import './UpdateAppointmentForm.css';
+import './UpdateUserForm.css';
 
 const UpdateReceptionist = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
