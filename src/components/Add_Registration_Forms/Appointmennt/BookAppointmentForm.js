@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import './BookAppointmentForm.css';
+import API_URL from '../../../config';
 
 const BookAppointmentForm = ({ handleBack }) => {
   const [patId, setPatId] = useState('');
@@ -16,7 +17,7 @@ const BookAppointmentForm = ({ handleBack }) => {
     const formattedAppointmentTime = appointmentTime + ':00';
 
     // Send API request to book the appointment
-    fetch(`http://localhost:8080/hospital/appointment/add`, {
+    fetch(API_URL + `/hospital/appointment/add`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

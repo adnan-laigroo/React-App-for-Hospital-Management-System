@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import './UpdatePasswordForm.css';
+import API_URL from '../../../config';
 
 const UpdatePasswordForm = ({ handleBack }) => {
   const [username, setUsername] = useState('');
@@ -11,7 +12,7 @@ const UpdatePasswordForm = ({ handleBack }) => {
     e.preventDefault();
 
     // Send API request to update the password
-    fetch(`http://localhost:8080/hospital/user/update/password/${username}`, {
+    fetch(API_URL + `/hospital/user/update/password/${username}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

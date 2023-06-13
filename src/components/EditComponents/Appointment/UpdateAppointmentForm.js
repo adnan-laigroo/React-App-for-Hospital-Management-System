@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './UpdateAppointmentForm.css';
+import API_URL from '../../../config';
 
 const UpdateAppointmentForm = ({ handleBack }) => {
   const [apId, setApId] = useState('');
@@ -18,7 +19,7 @@ const UpdateAppointmentForm = ({ handleBack }) => {
   useEffect(() => {
     if (!initialLoad) {
       // Fetch appointment details based on apId
-      fetch(`http://localhost:8080/hospital/appointment/get/${apId}`)
+      fetch(API_URL + `/hospital/appointment/get/${apId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Error fetching appointment details');

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AddForm.css';
+import API_URL from '../../config';
 
 const AddPatientForm = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
@@ -26,7 +27,7 @@ const AddPatientForm = ({ handleBack }) => {
     };
 
     // Send API request to add the patient
-    fetch('http://localhost:8080/hospital/patient/add', {
+    fetch(API_URL + '/hospital/patient/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

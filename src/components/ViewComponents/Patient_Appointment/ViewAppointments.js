@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaCheck, FaClock } from 'react-icons/fa';
 import './tableStyle.css'; // Import the CSS file
+import API_URL from '../../../config';
 
 const ViewAppointments = ({ handleBack }) => {
   const [appointments, setAppointments] = useState([]);
@@ -8,7 +9,7 @@ const ViewAppointments = ({ handleBack }) => {
 
   useEffect(() => {
     // Fetch appointments from the API
-    fetch('http://localhost:8080/hospital/appointment/list')
+    fetch(API_URL + '/hospital/appointment/list')
       .then((response) => response.json())
       .then((data) => {
         // Update state with fetched appointments

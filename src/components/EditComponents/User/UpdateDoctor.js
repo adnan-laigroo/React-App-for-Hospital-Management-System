@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './UpdateUserForm.css';
+import API_URL from '../../../config';
 
 const UpdateDoctor = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
@@ -16,7 +17,7 @@ const UpdateDoctor = ({ handleBack }) => {
   useEffect(() => {
     if (!initialLoad) {
       // Fetch doctor details based on email
-      fetch(`http://localhost:8080/hospital/doctor/get/${email}`)
+      fetch(API_URL + `/hospital/doctor/get/${email}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Error fetching doctor details');

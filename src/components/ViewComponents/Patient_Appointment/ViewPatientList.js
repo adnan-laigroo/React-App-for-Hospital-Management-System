@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './tableStyle.css'; // Import the CSS file
+import API_URL from '../../../config';
 
 const ViewPatientList = ({ handleBack }) => {
   const [patients, setPatients] = useState([]);
@@ -7,7 +8,7 @@ const ViewPatientList = ({ handleBack }) => {
 
   useEffect(() => {
     // Fetch patients from the API
-    fetch('http://localhost:8080/hospital/patient/list')
+    fetch(API_URL + '/hospital/patient/list')
       .then((response) => response.json())
       .then((data) => {
         // Update state with fetched patients

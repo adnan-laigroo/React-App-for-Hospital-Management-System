@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './UpdatePatientForm.css';
+import API_URL from '../../../config';
 
 const UpdatePatientForm = ({ handleBack }) => {
   const [patId, setPatId] = useState('');
@@ -19,7 +20,7 @@ const UpdatePatientForm = ({ handleBack }) => {
   useEffect(() => {
     if (!initialLoad) {
       // Fetch patient details based on patId
-      fetch(`http://localhost:8080/hospital/patient/get/${patId}`)
+      fetch(API_URL + `/hospital/patient/get/${patId}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Error fetching patient details');

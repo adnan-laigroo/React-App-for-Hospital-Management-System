@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CSS/userTable.css'; // Import the CSS file
+import API_URL from '../../../config';
 
 const ViewReceptionists = () => {
   const [receptionists, setReceptionists] = useState([]);
@@ -8,7 +9,7 @@ const ViewReceptionists = () => {
 
   useEffect(() => {
     // Fetch receptionists from the API
-    fetch('http://localhost:8080/hospital/receptionist/list')
+    fetch(API_URL + '/hospital/receptionist/list')
       .then((response) => response.json())
       .then((data) => {
         // Update state with fetched receptionists

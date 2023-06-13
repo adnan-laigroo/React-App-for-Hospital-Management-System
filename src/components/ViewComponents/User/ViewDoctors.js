@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CSS/userTable.css'; // Import the CSS file
+import API_URL from '../../../config';
 
 const ViewDoctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -8,7 +9,7 @@ const ViewDoctors = () => {
 
   useEffect(() => {
     // Fetch doctors from the API
-    fetch('http://localhost:8080/hospital/doctor/list')
+    fetch(API_URL + '/hospital/doctor/list')
       .then((response) => response.json())
       .then((data) => {
         // Update state with fetched doctors

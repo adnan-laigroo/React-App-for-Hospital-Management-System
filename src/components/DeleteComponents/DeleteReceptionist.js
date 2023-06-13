@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import './DeleteUser.css';
+import API_URL from '../../config';
 
 const DeleteReceptionist = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
@@ -17,7 +18,7 @@ const DeleteReceptionist = ({ handleBack }) => {
     if (!initialLoad) {
       // Fetch receptionist details based on email
       if (email) {
-        fetch(`http://localhost:8080/hospital/receptionist/get/${email}`)
+        fetch(API_URL + `/hospital/receptionist/get/${email}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error('Error fetching receptionist details');

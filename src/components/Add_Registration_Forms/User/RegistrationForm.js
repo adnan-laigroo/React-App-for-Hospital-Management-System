@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaUserCheck, FaUserPlus } from 'react-icons/fa';
 import './RegistrationForm.css'; // Import the CSS file
+import API_URL from '../../../config';
 
 const RegistrationForm = ({ handleBack }) => {
   const initialFormValues = {
@@ -32,8 +33,8 @@ const RegistrationForm = ({ handleBack }) => {
 
     const endpoint =
       formValues.role === 'Doctor'
-        ? 'http://localhost:8080/hospital/doctor/add'
-        : 'http://localhost:8080/hospital/receptionist/add';
+        ? '/hospital/doctor/add'
+        : '/hospital/receptionist/add';
 
     const formData = {
       firstName: formValues.firstName,
@@ -48,7 +49,7 @@ const RegistrationForm = ({ handleBack }) => {
       formData.speciality = formValues.speciality;
     }
 
-    fetch(endpoint, {
+    fetch((API_URL + endpoint), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
