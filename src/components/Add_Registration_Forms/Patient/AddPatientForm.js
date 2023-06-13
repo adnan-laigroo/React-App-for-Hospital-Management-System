@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './AddForm.css';
-import API_URL from '../../config';
+import API_URL from '../../../config';
 
 const AddPatientForm = ({ handleBack }) => {
   const [firstName, setFirstName] = useState('');
